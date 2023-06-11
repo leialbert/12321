@@ -15,12 +15,14 @@ class PhoneNumberAdmin(admin.ModelAdmin):
   
 @admin.register(RequestLog)
 class RequestLogAdmin(admin.ModelAdmin):
-    list_display = ('requested_at', 'caller', 'callee', 'block', 'request_ip')
+    list_display = ('requested_at_custom', 'caller', 'callee', 'block', 'request_ip')
     search_fields = ('caller', 'callee', 'request_ip')
     ordering = ('-requested_at',)
-    fields = ('requested_at', 'caller', 'callee', 'block', 'request_ip')
-    readonly_fields = ('requested_at',)
     list_per_page = 50
-    empty_value_display = '-empty-'
     list_max_show_all = 200
+    
+    def requested_at_custom(self, obj):
+        return obj.requested_at.strftime('%Y-%m-%d %H:%M:%S.%f')
+    requested_at_custom.short_description = 'Requested At'
+
         

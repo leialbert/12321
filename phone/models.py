@@ -13,6 +13,8 @@ class RequestLog(models.Model):
     callee = models.CharField('被叫号码',max_length=15)
     block = models.BooleanField('是否拦截', default=False)
     request_ip = models.CharField('请求IP',max_length=15)
+    callId = models.CharField('Call ID',max_length=50)
+    
 
     def __str__(self):
-        return self.caller + ' ' + self.callee + ' ' + self.request_ip
+        return self.requested_at.strftime('%Y-%m-%d %H:%M:%S.%f')
