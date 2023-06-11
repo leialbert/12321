@@ -1,7 +1,7 @@
 from django.http import HttpResponseForbidden
 
 class RestrictIPMiddleware:
-    allowed_ips = ['121.196.164.199','47.98.43.127']  # Replace with your allowed IPs
+    allowed_ips = ['127.0.0.1','121.196.164.199','47.98.43.127']  # Replace with your allowed IPs
     restricted_path = '/api/v1/check'  # The path you want to restrict
 
     def __init__(self, get_response):
