@@ -31,6 +31,9 @@ DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['12321.hzxmfg.com','47.97.115.100','127.0.0.1']
 
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 # Application definition
 

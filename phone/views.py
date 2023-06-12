@@ -26,7 +26,9 @@ class CheckPhoneNumberView(APIView):
             caller=caller,
             callee=callee,
             block=exists,
-            request_ip=request.META['REMOTE_ADDR'],
+            # request_ip=request.META['REMOTE_ADDR'],
+            request_ip = request.META.get('HTTP_X_FORWARDED_FOR', '').split(',')[0] or request.META.get('REMOTE_ADDR'),
+
             callId=call_id
         )
 
