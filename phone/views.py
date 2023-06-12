@@ -35,6 +35,7 @@ class CheckPhoneNumberView(APIView):
         if exists:
             response_data["forbid"] = 1
             response_data["transactionId"] = '12321'
-
-
-        return Response(response_data)
+            response_data_string = json.dumps(response_data)
+        else:
+            response_data_string = json.dumps(response_data)
+        return Response(response_data_string)
