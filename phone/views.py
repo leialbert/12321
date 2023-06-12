@@ -1,9 +1,16 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import PhoneNumber, RequestLog
+import json
+from rest_framework.exceptions import ParseError
+
 
 class CheckPhoneNumberView(APIView):
     def post(self, request, *args, **kwargs):
+        try:
+            data = json.loads(request.body)
+        except json.JSONDecodeError:
+            raise ParseError("Malformed JSON")
         data = request.data
 
         # Extract the callId, caller and callee from the request data
