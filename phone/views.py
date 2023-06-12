@@ -11,8 +11,6 @@ class CheckPhoneNumberView(APIView):
             data = json.loads(request.body)
         except json.JSONDecodeError:
             raise ParseError("Malformed JSON")
-        data = request.data
-
         # Extract the callId, caller and callee from the request data
         call_id = data.get('callId')
         caller = data.get('caller')
@@ -36,5 +34,7 @@ class CheckPhoneNumberView(APIView):
         response_data = {"callId": call_id}
         if exists:
             response_data["forbid"] = 1
+            response_data["transactionId"] = '12321'
+
 
         return Response(response_data)
