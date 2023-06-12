@@ -15,8 +15,9 @@ class PhoneNumberAdmin(admin.ModelAdmin):
   
 @admin.register(RequestLog)
 class RequestLogAdmin(admin.ModelAdmin):
-    list_display = ('requested_at_custom', 'caller', 'callee', 'block', 'request_ip')
+    list_display = ('requested_at_custom', 'callId','caller', 'callee', 'block', 'request_ip')
     search_fields = ('caller', 'callee', 'request_ip')
+    readonly_fields = ('requested_at', 'callId', 'caller', 'callee', 'block', 'request_ip')
     ordering = ('-requested_at',)
     list_per_page = 50
     list_max_show_all = 200
