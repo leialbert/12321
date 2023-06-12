@@ -34,7 +34,7 @@ class CheckPhoneNumberView(APIView):
         
         # response_data = {"callId": call_id}
         if exists:
-            response_data = '{"callId":%d,"forbid":1,"transactionId":"910821-128385"}'%call_id
+            response_data = '{"callId":%d,"forbid":1,"transactionId":"12321"}'%call_id
         else:
             response_data = '{"callId":%d}'%call_id
-        return Response(response_data)
+        return Response(response_data,content_type='application/json')
