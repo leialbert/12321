@@ -160,7 +160,8 @@ cython_debug/
 #.idea/
 .DS_Store
 static
-Import.py
 WuRaoHaoMa.txt
-./Import.py
+handle_import.py
+
+
 
