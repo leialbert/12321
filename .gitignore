@@ -162,4 +162,5 @@ cython_debug/
 static
 Import.py
 WuRaoHaoMa.txt
+./Import.py
 

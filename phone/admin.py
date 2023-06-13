@@ -28,7 +28,6 @@ class RequestLogAdmin(admin.ModelAdmin):
     def requested_at_custom(self, obj):
         requested_at_localtime = timezone.localtime(obj.requested_at, timezone=pytz.timezone('Asia/Shanghai'))
         return requested_at_localtime.strftime('%Y-%m-%d %H:%M:%S.%f')
-        # return obj.requested_at.strftime('%Y-%m-%d %H:%M:%S.%f')
     requested_at_custom.short_description = 'Requested At'
 
         
