@@ -1,9 +1,8 @@
 from rest_framework.views import APIView
-from rest_framework.response import Response
 from .models import PhoneNumber, RequestLog
 import json
 from rest_framework.exceptions import ParseError
-
+from django.http import HttpResponse
 
 class CheckPhoneNumberView(APIView):
     def post(self, request, *args, **kwargs):
@@ -14,6 +13,7 @@ class CheckPhoneNumberView(APIView):
         # Extract the callId, caller and callee from the request data
         call_id = data.get('callId')
         caller = data.get('caller')
+        callee_original = data.get('callee')
         callee = data.get('callee')[-11:]
 
         # Check if the callee number is in the PhoneNumber database
@@ -22,19 +22,14 @@ class CheckPhoneNumberView(APIView):
         # Log the request
         RequestLog.objects.create(
             caller=caller,
-            callee=callee,
+            callee=callee_original,
             block=exists,
-            # request_ip=request.META['REMOTE_ADDR'],
             request_ip = request.META.get('HTTP_X_FORWARDED_FOR', '').split(',')[0] or request.META.get('REMOTE_ADDR'),
 
             callId=call_id
         )
-
-        # Prepare the response
-        
-        # response_data = {"callId": call_id}
         if exists:
             response_data = '{"callId":%d,"forbid":1,"transactionId":"12321"}'%call_id
         else:
             response_data = '{"callId":%d}'%call_id
-        return Response(response_data,content_type='application/json')
+        return HttpResponse(response_data,content_type='application/json')
