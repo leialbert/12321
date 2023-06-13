@@ -9,7 +9,10 @@ source env/bin/activate
 git pull origin main 
 # Run any migrations and restart the server
 echo "Running migrations..."
+python manage.py makemigrations
 python manage.py migrate
+echo "Collecting static files..."
+python manage.py collectstatic
 echo "Restarting server..."
 systemctl restart gunicorn
 echo "Completed."
