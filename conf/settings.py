@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-x-hqcy++y$=p_*h&p3nf$x^$8vp+56i7zbrqdog4vx0j$r%03&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = ['12321.hzxmfg.com','47.97.115.100','127.0.0.1']
+ALLOWED_HOSTS = [os.getenv('DOMAIN1'),os.getenv('DOMAIN2'),'127.0.0.1']
 
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
